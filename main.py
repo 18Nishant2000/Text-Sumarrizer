@@ -35,3 +35,13 @@ for i in glove:
     coefs = np.asarray(values[1:], dtype='float32')
     glove_vectors[word] = coefs
 glove.close()
+
+sentence_vector=[]
+for i in new_sentences:
+    if len(i)!=0:
+        v=sum([glove_vectors.get(j,np.zeros((100,),dtype='float32')) for j in i])/(len(i)+0.001)
+    else:
+        v=np.zeros((100,),dtype='float32')
+    sentence_vector.append(v)        
+print('Sentence vectors: ',sentence_vector)
+    
